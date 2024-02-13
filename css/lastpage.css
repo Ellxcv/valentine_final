@@ -1,0 +1,56 @@
+body {
+  text-align: center;
+  margin-top: 30px;
+  font-family: "Courier";
+  background-color: #fff5e4;
+  color: #ff9494;
+}
+#thankyou {
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+.rizz {
+  margin-bottom: 10px;
+  width: 150px; /* Sesuaikan lebar dan tinggi sesuai kebutuhan */
+  height: 150px;
+  border-radius: 50%; /* Membuat bentuk lingkaran */
+  background-color: #ff9494; /* Warna latar belakang */
+  color: #fff5e4; /* Warna teks */
+  font-size: 24px; /* Ukuran teks */
+  line-height: 150px; /* Mengatur teks ke tengah */
+  border: 5px solid #e67373; /* Tambahkan garis tepi */
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1); /* Tambahkan bayangan */
+  animation: heartbeat 1s infinite; /* Animasi detak jantung */
+}
+.button {
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 10px;
+  font-family: "Courier";
+  margin-bottom: 20px;
+  background-color: #ffe3e1;
+  color: #e67373;
+  border-radius: 12px;
+  border: 2px solid #ffe3e1;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  font-weight: bold;
+  font-size: 22px;
+  color: #ff8484;
+  background-color: #ffd9d9;
+  border-color: #ffd9d9;
+}
+
+/* Animasi detak jantung */
+@keyframes heartbeat {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}

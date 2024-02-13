@@ -1,0 +1,53 @@
+body {
+  text-align: center;
+  margin-top: 30px;
+  font-family: courier;
+  background-color: #fdf7e4; /* Putih krem */
+  color: #ff4d4d; /* Merah */
+}
+#dessertquestion {
+  font-size: 50px;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+.dessert-item {
+  display: inline-table;
+  margin: 10px;
+  vertical-align: top;
+  color: #ff4d4d; /* Merah */
+}
+.dessert-item img {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  border: 5px solid #ffcccc; /* Merah muda */
+  object-fit: cover;
+  padding: 10px;
+}
+.dessert-item label {
+  display: block;
+  font-weight: bold;
+  color: #ff4d4d;
+}
+.button {
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 10px;
+  font-family: "Courier";
+  margin-bottom: 20px;
+  background-color: #ffe3e1;
+  color: #e67373;
+  border-radius: 12px;
+  border: 2px solid #ffe3e1;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  font-weight: bold;
+  font-size: 22px;
+  color: #ff8484;
+  background-color: #ffd9d9;
+  border-color: #ffd9d9;
+}

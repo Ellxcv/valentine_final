@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Activities</title>
+    <link rel="stylesheet" href="css/activities.css" />
+  </head>
+  <body>
+    <div id="activityquestion"><b>What are we doing after?</b></div>
+    <!-- Form for selecting activities and submitting to Formspree -->
+    <form action="https://formspree.io/f/xzbnrero" method="POST">
+      <div class="activities-selection">
+        <div class="activity-item">
+          <img src="activities/arcade.png" alt="arcade" />
+          <label>
+            <input type="checkbox" name="selectedActivities[]" value="Arcade" />
+            Arcade
+          </label>
+        </div>
+        <div class="activity-item">
+          <img src="activities/cinema.png" alt="cinema" />
+          <label>
+            <input type="checkbox" name="selectedActivities[]" value="Cinema" />
+            Cinema
+          </label>
+        </div>
+
+        <div class="activity-item">
+          <img src="activities/museum.png" alt="museum" />
+          <label>
+            <input type="checkbox" name="selectedActivities[]" value="museum" />
+            Museum
+          </label>
+        </div>
+        <div class="activity-item">
+          <img src="activities/park.png" alt="park" />
+          <label>
+            <input type="checkbox" name="selectedActivities[]" value="Park" />
+            Park
+          </label>
+        </div>
+      </div>
+      <button type="submit" class="button continue-button">Next Please</button>
+    </form>
+
+    <script>
+      document
+        .querySelector("form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent the default form submission
+
+          // Gather selected activities
+          const selectedActivities = Array.from(
+            document.querySelectorAll(
+              'input[name="selectedActivities[]"]:checked'
+            )
+          ).map((checkbox) => checkbox.value);
+
+          // Send selected activities to Formspree
+          fetch("https://formspree.io/f/xzbnrero", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              selectedActivities: selectedActivities,
+            }),
+          })
+            .then((response) => {
+              // Check if the submission was successful
+              if (response.ok) {
+                // Redirect to the next page
+                window.location.href = "lastpage.html";
+              } else {
+                // Handle errors
+                alert("Failed to submit form. Please try again later.");
+              }
+            })
+            .catch((error) => {
+              // Handle network errors
+              console.error("Error:", error);
+              alert(
+                "Failed to submit form. Please check your internet connection and try again."
+              );
+            });
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dessert</title>
+    <link rel="stylesheet" href="css/dessert.css" />
+  </head>
+  <body>
+    <div id="dessertquestion">Which dessert do we eat?</div>
+
+    <!-- Form untuk memilih dessert dan mengirimkan ke email menggunakan Formspree -->
+    <form
+      id="dessertForm"
+      action="https://formspree.io/f/xqkrqpqy"
+      method="POST"
+    >
+      <div class="dessert-selection">
+        <div class="dessert-item">
+          <img src="food/bubble-tea.png" alt="boba" />
+          <label
+            ><input type="checkbox" name="selectedDesserts[]" value="boba" />
+            boba</label
+          >
+        </div>
+        <div class="dessert-item">
+          <img src="food/coffee-cup.png" alt="coffe" />
+          <label
+            ><input type="checkbox" name="selectedDesserts[]" value="churro" />
+            coffe</label
+          >
+        </div>
+        <div class="dessert-item">
+          <img src="food/bakery.png" alt="cake" />
+          <label
+            ><input type="checkbox" name="selectedDesserts[]" value="cake" />
+            cake and tea</label
+          >
+        </div>
+        <div class="dessert-item">
+          <img src="food/popsicle.png" alt="es" />
+          <label
+            ><input type="checkbox" name="selectedDesserts[]" value="es" /> ice
+            cream or es buah</label
+          >
+        </div>
+        <div class="dessert-item">
+          <img src="food/food.png" alt="bakpau" />
+          <label
+            ><input type="checkbox" name="selectedDesserts[]" value="bakpau" />
+            bakpau</label
+          >
+        </div>
+      </div>
+      <!-- Tombol submit -->
+      <button type="submit" class="button continue-button">
+        Nexttt pleasee
+      </button>
+    </form>
+
+    <!-- Skrip JavaScript -->
+    <script>
+      // Menangkap event pengiriman formulir
+      document
+        .getElementById("dessertForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Menghentikan perilaku default pengiriman formulir
+
+          // Mengirimkan data dessert ke email menggunakan Formspree
+          fetch("https://formspree.io/f/xqkrqpqy", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              selectedDesserts: Array.from(
+                document.querySelectorAll(
+                  'input[name="selectedDesserts[]"]:checked'
+                )
+              ).map((checkbox) => checkbox.value),
+            }),
+          })
+            .then((response) => {
+              // Memeriksa apakah pengiriman berhasil
+              if (response.ok) {
+                // Jika berhasil, arahkan pengguna ke halaman activities.html
+                window.location.href = "activities.html";
+              } else {
+                // Jika gagal, tampilkan pesan kesalahan
+                alert("Failed to submit form. Please try again later.");
+              }
+            })
+            .catch((error) => {
+              // Menangani kesalahan jaringan atau kesalahan lainnya
+              console.error("Error:", error);
+              alert(
+                "Failed to submit form. Please check your internet connection and try again."
+              );
+            });
+        });
+    </script>
+  </body>
+</html>

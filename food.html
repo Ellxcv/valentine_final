@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Selection</title>
+    <link rel="stylesheet" href="css/food.css" />
+  </head>
+  <body>
+    <div id="foodquestion">
+      <b>What food would you like to eat?</b>
+    </div>
+
+    <!-- Form untuk memilih makanan dan mengirimkan ke email menggunakan Formspree -->
+    <form action="https://formspree.io/f/xrgnqppq" method="POST">
+      <div class="food-selection">
+        <div class="food-item">
+          <img src="food/hamburger.png" alt="Burger" />
+          <label>
+            <input type="checkbox" name="selectedFoods[]" value="Burger" />
+            Burger
+          </label>
+        </div>
+        <div class="food-item">
+          <img src="food/fried-rice.png" alt="nasgor" />
+          <label>
+            <input type="checkbox" name="selectedFoods[]" value="Nasgor" />
+            Nasi Goreng
+          </label>
+        </div>
+        <div class="food-item">
+          <img src="food/pizza.png" alt="pizza" />
+          <label>
+            <input type="checkbox" name="selectedFoods[]" value="Pizza" />
+            Pizza
+          </label>
+        </div>
+        <div class="food-item">
+          <img src="food/salad.png" alt="salad" />
+          <label>
+            <input type="checkbox" name="selectedFoods[]" value="Salad" />
+            Salad
+          </label>
+        </div>
+      </div>
+      <!-- Tombol submit -->
+      <button type="submit" class="button continue-button">
+        Continue Please
+      </button>
+    </form>
+
+    <!-- Skrip JavaScript -->
+    <script>
+      // Menangkap event pengiriman formulir
+      document
+        .querySelector("form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Menghentikan perilaku default pengiriman formulir
+
+          // Mengirimkan data makanan ke email menggunakan Formspree
+          fetch("https://formspree.io/f/xrgnqppq", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              selectedFoods: Array.from(
+                document.querySelectorAll(
+                  'input[name="selectedFoods[]"]:checked'
+                )
+              ).map((checkbox) => checkbox.value),
+            }),
+          })
+            .then((response) => {
+              // Memeriksa apakah pengiriman berhasil
+              if (response.ok) {
+                // Jika berhasil, arahkan pengguna ke halaman dessert.html
+                window.location.href = "dessert.html";
+              } else {
+                // Jika gagal, tampilkan pesan kesalahan
+                alert("Failed to submit form. Please try again later.");
+              }
+            })
+            .catch((error) => {
+              // Menangani kesalahan jaringan atau kesalahan lainnya
+              console.error("Error:", error);
+              alert(
+                "Failed to submit form. Please check your internet connection and try again."
+              );
+            });
+        });
+    </script>
+  </body>
+</html>
